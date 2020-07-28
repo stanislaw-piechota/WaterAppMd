@@ -15,18 +15,20 @@ class ContentNavigationDrawer(BoxLayout):
 class MyApp(MDApp):
     with open('data.json') as f:
         data = json.loads(f.read())
-    data['date'] = (datetime.datetime.now()+datetime.timedelta(days=30)).strftime("%Y-%m-%d %H:%M:%S")
 
     def write_to_file(self):
         with open('data.json', 'w') as f:
             f.write(json.dumps(self.data))
 
+    if data['first']:
+        data['date'] = (datetime.datetime.now()+datetime.timedelta(days=30)).strftime("%Y-%m-%d %H:%M:%S")
+        data['first'] = False
+        with open('data.json', 'w') as f:
+            f.write(json.dumps(data))
+
     def save_settings(self, instance):
-        pass
         if self.root.ids.five.active:
             self.data["botles"] = 300
-        if self.root.ids.three.active:
-            self.data["botles"] = 500
         if self.root.ids.seven.active:
             self.data["botles"] = 214
         """if self.root.ids.counter.active:
