@@ -1,0 +1,206 @@
+<Check@MDCheckbox>:
+    group: 'group'
+    size_hint: None, None
+    size: dp(48),dp(48)
+
+<ContentNavigationDrawer>:
+    orientation: 'vertical'
+    padding: "10dp"
+    AnchorLayout:
+        anchor_x: 'left'
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "100dp", "100dp"
+            source: "dafi.png"
+
+    MDLabel:
+        text: "     Water App"
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "     https://github.com/stasio14/WaterAppMd"
+        size_hint_y: None
+        height: self.texture_size[1]
+        font_style: "Caption"
+
+    ScrollView:
+
+        MDList:
+
+            OneLineListItem:
+                text: "Main Page"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "main"
+
+            OneLineListItem:
+                text: "Statistics"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "stat"
+
+            OneLineListItem:
+                text: "Settings"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = "settings"
+
+
+Screen:
+
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "Water App"
+        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+    NavigationLayout:
+        x: toolbar.height
+
+        ScreenManager:
+            id: screen_manager
+
+            Screen:
+                name: "main"
+
+                MDLabel:
+                    id: label
+                    text: f"Today botles: {app.data[str(app.data['day'])]}"
+                    halign: "center"
+                    pos_hint: {'center_y':.7}
+                    font_style: 'Button'
+                MDLabel:
+                    id: label1
+                    text: f"Botles drunk: {app.data['drunk']}"
+                    halign: "center"
+                    pos_hint: {'center_y':.6}
+                    font_style: 'Button'
+                MDLabel:
+                    id: label2
+                    text: f"Botles left: {app.data['botles']-app.data['drunk']}"
+                    halign: "center"
+                    pos_hint: {'center_y':.5}
+                    font_style: 'Button'
+
+                MDFillRoundFlatIconButton:
+                    icon: "water"
+                    text: "Add botle"
+                    pos_hint: {'center_x':.5, 'center_y':.4}
+                    on_press: app.add_to_result()
+
+                MDFillRoundFlatIconButton:
+                    icon: "delete"
+                    text: "Reset progress"
+                    pos_hint: {'center_x':.5, 'center_y':.3}
+                    on_press: app.reset_result()
+
+            Screen:
+                name: "stat"
+
+                MDLabel:
+                    text: "Week statistics"
+                    font_style: "H6"
+                    halign: 'center'
+                    pos_hint: {'center_y':.85}
+
+                MDLabel:
+                    id: mon
+                    text: f"Monday: {str(app.data['1'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.75}
+                    font_style: 'Button'
+                MDLabel:
+                    id: tue
+                    text: f"Tuesday: {str(app.data['2'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.65}
+                    font_style: 'Button'
+                MDLabel:
+                    id: wed
+                    text: f"Wednesday: {str(app.data['3'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.55}
+                    font_style: 'Button'
+                MDLabel:
+                    id: thu
+                    text: f"Thursday: {str(app.data['4'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.45}
+                    font_style: 'Button'
+                MDLabel:
+                    id: fri
+                    text: f"Friday: {str(app.data['5'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.35}
+                    font_style: 'Button'
+                MDLabel:
+                    id: sat
+                    text: f"Saturday: {str(app.data['6'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.25}
+                    font_style: 'Button'
+                MDLabel:
+                    id: sun
+                    text: f"Sunday: {str(app.data['7'])}"
+                    halign: 'center'
+                    pos_hint: {'center_y':.15}
+                    font_style: 'Button'
+
+            Screen:
+                name: "settings"
+
+                MDLabel:
+                    text: "Capacity of botle: "
+                    pos_hint: {'center_x':.55,'center_y':.8}
+                    font_style: "Button"
+                MDLabel:
+                    text: "0.3"
+                    pos_hint: {'center_x':.8, 'center_y':.8}
+                Check:
+                    id: three
+                    pos_hint: {'center_x': .4, 'center_y': .8}
+                MDLabel:
+                    text: "0.5"
+                    pos_hint: {'center_x':1,'center_y':.8}
+                Check:
+                    id: five
+                    active: True
+                    pos_hint: {'center_x': .6, 'center_y': .8}
+                MDLabel:
+                    text: "0.7"
+                    pos_hint: {'center_x':1.2, 'center_y':.8}
+                Check:
+                    id: seven
+                    pos_hint: {'center_x':.8, 'center_y':.8}
+
+                MDLabel:
+                    text: "Enable/Disable counter to filter change:"
+                    pos_hint: {'center_x':.55, 'center_y':.7}
+                    font_style: 'Button'
+                #Check:
+                #    id: counter
+                #    pos_hint: {'center_x':.5, 'center_y':.699}
+                MDLabel:
+                    text: "This feature is not available yet"
+                    pos_hint: {'center_x':.55,'center_y':.67}
+                    font_style: "Overline"
+
+                MDFillRoundFlatIconButton:
+                    icon: "content-save"
+                    text: "Save"
+                    pos_hint: {'center_x':.5, 'center_y':.2}
+                    on_release: app.save_settings(self)
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            ContentNavigationDrawer:
+                screen_manager: screen_manager
+                nav_drawer: nav_drawer
