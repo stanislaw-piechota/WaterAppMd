@@ -71,6 +71,13 @@ Screen:
                 name: "main"
 
                 MDLabel:
+                    id: tlabel
+                    text: "Time: "
+                    halign: 'center'
+                    pos_hint: {'center_y': .8}
+                    font_style: "Button"
+
+                MDLabel:
                     id: label
                     text: f"Today botles: {app.data[str(app.data['day'])]}"
                     halign: "center"
@@ -161,24 +168,18 @@ Screen:
                     pos_hint: {'center_x':.55,'center_y':.8}
                     font_style: "Button"
                 MDLabel:
-                    text: "0.3"
-                    pos_hint: {'center_x':.8, 'center_y':.8}
-                Check:
-                    id: three
-                    pos_hint: {'center_x': .4, 'center_y': .8}
-                MDLabel:
                     text: "0.5"
-                    pos_hint: {'center_x':1,'center_y':.8}
+                    pos_hint: {'center_x':1.1,'center_y':.8}
                 Check:
                     id: five
                     active: True
-                    pos_hint: {'center_x': .6, 'center_y': .8}
+                    pos_hint: {'center_x': .7, 'center_y': .8}
                 MDLabel:
                     text: "0.7"
-                    pos_hint: {'center_x':1.2, 'center_y':.8}
+                    pos_hint: {'center_x':1.3, 'center_y':.8}
                 Check:
                     id: seven
-                    pos_hint: {'center_x':.8, 'center_y':.8}
+                    pos_hint: {'center_x':.9, 'center_y':.8}
 
                 MDLabel:
                     text: "Enable/Disable counter to filter change:"
