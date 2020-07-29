@@ -6,7 +6,6 @@ from kivy.uix.label import Label
 from kivy.clock import Clock
 import json
 import datetime
-import plyer
 
 class ContentNavigationDrawer(BoxLayout):
     screen_manager = ObjectProperty()
